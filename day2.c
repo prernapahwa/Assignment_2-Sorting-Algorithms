@@ -68,7 +68,7 @@ void Time(int n , int arr[]) {
     bubble_sort(n,arr);//bubble sort
     clock_t stop = clock();
     double elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
-    printf("Time in ms: %f", elapsed);
+    printf("Time in ms: %f\n", elapsed);
 }
 
 
