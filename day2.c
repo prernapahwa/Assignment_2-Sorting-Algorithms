@@ -1,16 +1,17 @@
+  
 /*
  * Bubble Sort
  *
  * @Prerna(1910990964)
  * 25/7/2021
  * Coding_Assignment->day2
- *
+ * Time function from stackoverflow
 */
 
 #include<stdio.h>
 #include<stdlib.h>
 #include<sys/time.h>
-
+#include<time.h>
 
 void bubble_sort(int n , int *arr) {
 
@@ -38,9 +39,10 @@ void bubble_sort(int n , int *arr) {
 }
 
 void mixed (int n , int *arr) {
-    
+    int upper= n ;
+    int lower = 1;
     for(int i = 0; i < n; i++) {
-    	arr[i] = rand(); // setting array elements to a random value;
+    	arr[i] = (rand() % (upper - lower + 1)) + lower; // setting array elements to a random value;
     }
 } 
 
@@ -61,15 +63,12 @@ void descending (int n , int *arr) {
 }
 
 
-void time(int n , int arr[]) {
-    struct timeval te;
-    long long time_taken;
-    gettimeofday(&te, NULL);
-    long long start = te.tv_sec *1000ll + te.tv_usec / 1000;
-    bubble_sort(n  , arr); //bubble sort
-    gettimeofday(&te, NULL);
-    long long end = te.tv_sec *1000ll + te.tv_usec / 1000;
-    printf("%lld\n",end - start);
+void Time(int n , int arr[]) {
+    clock_t start = clock();
+    bubble_sort(n,arr);//bubble sort
+    clock_t stop = clock();
+    double elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
+    printf("Time in ms: %f", elapsed);
 }
 
 
@@ -82,19 +81,19 @@ int main() {
 
     printf("Random\n");
     mixed (n , arr); // setting array elements randomly
-    time(n , arr);
+    Time(n , arr);
 
     
     printf("Ascending\n");
     ascending (n , arr); // setting array elements in ascending order
-    time(n , arr);
+    Time(n , arr);
 
 
     
     
     printf("Descending\n");
     descending(n , arr); // setting array elements in descending order
-    time(n , arr);
+    Time(n , arr);
     
     printf("\n");
     
